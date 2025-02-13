@@ -15,9 +15,9 @@ from posthog.test.base import APIBaseTest
 
 def create_mock_unfurl_event(team_id: str, links: list[str]):
     return {
-        "token": "XXYYZZ",
+        "token": "MOCK_SECRET_KEY_VALUE",
         "team_id": team_id,
-        "api_app_id": "AXXXXXXXXX",
+        "api_app_id": "MOCK_SECRET_KEY_ID",
         "event": {
             "type": "link_shared",
             "channel": "Cxxxxxx",

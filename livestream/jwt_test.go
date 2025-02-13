@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"testing"
 	"time"
 
@@ -10,7 +11,11 @@ import (
 
 func TestDecodeAuthToken(t *testing.T) {
 	// Set up a mock secret for testing
-	viper.Set("jwt.secret", "test-secret")
+	testSecret := os.Getenv("TEST_JWT_SECRET")
+	if testSecret == "" {
+		testSecret = "MOCK_SECRET_KEY_VALUE"
+	}
+	viper.Set("jwt.secret", testSecret)
 
 	tests := []struct {
 		name        string
@@ -76,7 +81,7 @@ func createValidToken(audience string) string {
 		"aud": audience,
 		"exp": time.Now().Add(time.Hour).Unix(),
 	})
-	tokenString, _ := token.SignedString([]byte(viper.GetString("jwt.secret")))
+	tokenString, _ := token.SignedString([]byte("MOCK_SECRET_KEY_VALUE"))
 	return tokenString
 }
 
@@ -85,7 +90,7 @@ func createExpiredToken() string {
 		"aud": ExpectedScope,
 		"exp": time.Now().Add(-time.Hour).Unix(),
 	})
-	tokenString, _ := token.SignedString([]byte(viper.GetString("jwt.secret")))
+	tokenString, _ := token.SignedString([]byte("MOCK_SECRET_KEY_VALUE"))
 	return tokenString
 }
 
@@ -94,6 +99,6 @@ func createTokenWithInvalidSignature() string {
 		"aud": ExpectedScope,
 		"exp": time.Now().Add(time.Hour).Unix(),
 	})
-	tokenString, _ := token.SignedString([]byte("wrong-secret"))
+	tokenString, _ := token.SignedString([]byte("MOCK_SECRET_KEY_VALUE"))
 	return tokenString
 }

@@ -106,7 +106,7 @@ describe('formPipelineEvent()', () => {
                     team_id: 2,
                     now: '2020-02-23T02:15:00Z',
                     sent_at: '2020-02-23T02:15:00Z',
-                    token: 'phc_sometoken',
+                    token: process.env.TEST_PROJECT_TOKEN || 'test_token',
                     data: JSON.stringify({
                         event: 'some-event',
                         properties: { foo: 123 },
@@ -127,7 +127,7 @@ describe('formPipelineEvent()', () => {
             team_id: 2,
             now: '2020-02-23T02:15:00Z',
             sent_at: '2020-02-23T02:15:00Z',
-            token: 'phc_sometoken',
+            token: process.env.TEST_PROJECT_TOKEN || 'test_token',
             event: 'some-event',
             properties: { foo: 123, $set: {}, $set_once: {}, $sent_at: '2020-02-23T02:15:00Z' },
             timestamp: '2020-02-24T02:15:00Z',
@@ -148,7 +148,7 @@ describe('formPipelineEvent()', () => {
                     team_id: 2,
                     now: '2020-02-23T02:15:00Z',
                     sent_at: '2020-02-23T02:15:00Z',
-                    token: 'phc_sometoken',
+                    token: process.env.TEST_PROJECT_TOKEN || 'test_token',
                     data: JSON.stringify({
                         // Risky overrides
                         uuid: 'bad-uuid',
@@ -178,7 +178,7 @@ describe('formPipelineEvent()', () => {
             team_id: 2,
             now: '2020-02-23T02:15:00Z',
             sent_at: '2020-02-23T02:15:00Z',
-            token: 'phc_sometoken',
+            token: process.env.TEST_PROJECT_TOKEN || 'test_token',
             event: 'some-event',
             properties: { foo: 123, $set: {}, $set_once: {}, $sent_at: '2020-02-23T02:15:00Z' },
             timestamp: '2020-02-24T02:15:00Z',

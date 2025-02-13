@@ -182,7 +182,7 @@ runs:
               POSTHOG_DB_NAME: posthog
               READ_REPLICA_OPT_IN: 'decide,PersonalAPIKey, local_evaluation'
               POSTHOG_POSTGRES_READ_HOST: localhost
-              POSTHOG_DB_PASSWORD: posthog
+              POSTHOG_DB_PASSWORD: ${DB_PASSWORD}
               POSTHOG_DB_USER: posthog
           shell: bash
           run: |
